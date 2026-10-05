@@ -29,6 +29,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import mx.tec.avisos.R
 import mx.tec.avisos.domain.AvisoValidator
 import mx.tec.avisos.ui.components.BotonPrincipal
@@ -52,6 +53,7 @@ fun PublicarScreen(
     onTituloChange: (String) -> Unit,
     onCuerpoChange: (String) -> Unit,
     onGaleria: () -> Unit,
+    onCamara: () -> Unit,
     onQuitarImagen: () -> Unit,
     onPublicar: () -> Unit,
     onCancelar: () -> Unit,
@@ -122,6 +124,11 @@ fun PublicarScreen(
                     Spacer(Modifier.width(espaciado.sm))
                     Text("Galería")
                 }
+                OutlinedButton(onClick = onCamara, enabled = !uiState.enviando) {
+                    Icon(painterResource(R.drawable.ic_camara), contentDescription = null, modifier = Modifier.size(18.dp))
+                    Spacer(Modifier.width(espaciado.sm))
+                    Text("Cámara")
+                }
                 if (uiState.imagen != null) {
                     TextButton(onClick = onQuitarImagen, enabled = !uiState.enviando) {
                         Text("Quitar")
@@ -166,6 +173,7 @@ private fun PublicarPreview() {
             onTituloChange = {},
             onCuerpoChange = {},
             onGaleria = {},
+            onCamara = {},
             onQuitarImagen = {},
             onPublicar = {},
             onCancelar = {}
