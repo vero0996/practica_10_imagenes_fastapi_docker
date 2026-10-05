@@ -1,0 +1,7 @@
+Veronica Paola Zapata Sanchez 
+A01199193
+
+Ejercicio D4:
+1. El tamaño óptimo depende del uso final en pantalla, no de la resolución total del dispositivo. Una tarjeta a pantalla completa en teléfono requiere aproximadamente 1080 px físicos (por lo que 1280 px ofrece un margen adecuado). En cambio, enviar 1280 px para un avatar de perfil de 48 dp (que requiere ~150 px) resulta en un desperdicio ineficiente de ancho de banda y memoria. 
+2. Actualmente la app permite el acceso a cualquier usuario con sesión activa. Restringir la vista a "solo su dueño" exigiría vincular el identificador de cada clave al propietario y validar dicho permiso en la petición GET. Por el contrario, permitir el acceso "sin cuenta" elimina la dependencia de un usuario_actual; bajo este esquema, la seguridad recae únicamente en la clave, justificando el uso de un UUID impredecible. 
+3. En la implementación actual, las imágenes no vinculadas quedan huérfanas en el almacén de objetos. En un entorno de producción, esto se resuelve mediante dos enfoques: programando una regla de ciclo de vida en el almacén para depurar archivos no etiquetados como "en uso" tras 24 horas, o empaquetando la subida del aviso y la imagen en una sola petición atómica. La elección depende del balance entre costo computacional y de infraestructura.
